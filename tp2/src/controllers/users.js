@@ -23,7 +23,7 @@ async function findUsers(req, res, next) {
 
 async function insertUser(req, res, next) {
   try {
-    const result = await insertOne(collection, {"name": "Paul"});
+    const result = await insertOne(collection, req.body);
     return res.send(result);
   } catch (e) {
     console.log(e);
