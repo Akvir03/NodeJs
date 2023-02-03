@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tp1": "node ../tp1/app.js",
+    "tp2": "node ./src/app.js"
   },
   "author": "",
   "license": "ISC",
-  "tp1": "node ./tp1/app.js",
-  "tp2": "node ./tp2/src/app.js",
   "dependencies": {
     "express": "^4.18.2",
     "mongodb": "^5.0.0"
