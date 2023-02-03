@@ -16,4 +16,12 @@ async function findOne(collectionName, query, options = {}) {
 
 module.exports = {
   findOne,
+  /*
+  insertOne,
+  insertMany,
+  updateOne,
+  updateMany,
+  replace,
+  deleteOne,
+  deleteMany,*/
 };

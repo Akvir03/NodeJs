@@ -1,0 +1,6 @@
+Question 4 : 
+Cela permet de modifier les valeurs plutôt que le code
+Question 5 : 
+Permet de trouver un objet sur une liste de json
+
+
