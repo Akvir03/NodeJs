@@ -181,19 +181,19 @@ Une fois cela fait, créer les collections mongodb associées à vos entités da
  - Ajouter un item au registre X
  - Créer une watchlist pour un utilisateur X
  - Ajouter un item dans une watchlist X
- - Modifier le statut d'un item dans une watchlist 
- - Afficher les items du registre (avec possibilité de filtrer)
- - Récupérer la liste des utilisateurs 
- - Récupérer la liste des watchlists d'un utilisateur
- - Récupérer le contenu d'une watchlist
+ - Modifier le statut d'un item dans une watchlist X
+ - Afficher les items du registre (avec possibilité de filtrer) X (filtre= possibilité de mettre le nom)
+ - Récupérer la liste des utilisateurs X
+ - Récupérer la liste des watchlists d'un utilisateur X
+ - Récupérer le contenu d'une watchlist X
  
 ### Fonctionnalités supplémentaires:
- - Supprimer un item d'une watchlist
- - Modifier les informations personnelles d'un utilisateur
- - Supprimer une watchlist
+ - Supprimer un item d'une watchlist X
+ - Modifier les informations personnelles d'un utilisateur X
+ - Supprimer une watchlist X
  - Ajouter une watchlist en favori
  - Partager sa watchlist avec un autre utilisateur
- - Donner la possibilité d'écrire une note personnelle sur une watchlist ou un item d'une watchlist.
+ - Donner la possibilité d'écrire une note personnelle sur une watchlist ou un item d'une watchlist. X
  - Mettre en place une page permettant de tester les routes de notre api*
  
 **Voir section  Server side rendering*
