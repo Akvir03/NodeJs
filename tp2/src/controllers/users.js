@@ -23,22 +23,28 @@ async function insertfilminWatch(req,res,next){
           const veriffilm = await findOne("Registre",{Title: req.body.Title})
           if(veriffilm){
             let filmapush = {
-              "Title":req.body.Title,
+              "Title":verifwatch.Title,
               "statu":req.body.statu,
             }
           verifwatch.filmlist.push(filmapush)
-          const result = await updateOne("Watchlist", {"filmlist":verifwatch.filmlist}, {$set : {filmlist:verifwatch.filmlist}})
+          const result = await updateOne("Watchlist", {"nom": req.body.nom}, {$set : {filmlist:verifwatch.filmlist}})
           return res.send(result);
         }
           else{
           const film = await getMovieByTitle(req.body.Title)
           let filmform = {
             "Title":film.Title,
+            "Year":film.Year,
+            "Director":film.Director,
+            "Poster":film.Poster
+          }
+          let filmapush = {
+            "Title":filmform.Title,
             "statu":req.body.statu,
           }
           const ajoutregistr = await insertOne("Registre", filmform);
-          verifwatch.filmlist.push(filmform);
-          const result = await updateOne("Watchlist", {"filmlist":verifwatch.filmlist}, {$set : {filmlist:verifwatch.filmlist}})
+          verifwatch.filmlist.push(filmapush);
+          const result = await updateOne("Watchlist", {"nom": req.body.nom}, {$set : {filmlist:verifwatch.filmlist}})
           return res.send(result);
         }
         
