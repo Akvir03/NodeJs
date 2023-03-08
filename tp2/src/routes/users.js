@@ -1,10 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const { findUser,insertUser,updateUser,findUsers} = require("../controllers/users");
+const { findUser,insertUser,updateUser,findUsers,insertWatch, insertfilminWatch, insertfilminregistre} = require("../controllers/users");
 
 router.get("/findone", findUser);
-router.get("/create", insertUser);
+router.post("/create", insertUser);
 router.get("/find", findUsers);
-router.get("/update",updateUser);
+router.post("/update",updateUser);
+router.post("/createwatchlist", insertWatch);
+router.post("/insertfilminwatchlist",insertfilminWatch);
+router.post("/insertfilm",insertfilminregistre)
 
 module.exports = router;

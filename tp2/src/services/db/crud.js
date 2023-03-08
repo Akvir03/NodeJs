@@ -45,6 +45,7 @@ async function insertOne(collectionName, query, doc) {
   }
 }
 
+
 async function updateOne(collectionName, query, filter, updateDoc, options = {}) {
   try {
     const collection = getCollection(collectionName);
