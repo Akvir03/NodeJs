@@ -60,6 +60,18 @@ async function updateOne(collectionName, query, filter, updateDoc, options = {})
   }
 }
 
+async function deleteOne(collectionName, query, options = {}) {
+  try {
+    const collection = getCollection(collectionName);
+    const result = await collection.deleteOne(query, options);
+    return result;
+  } catch (e) {
+    console.log(`Erreur lors de l'exécution de la fonction deleteOne avec les paramètres suivants: ${query}`);
+    console.log(e);
+    throw e;
+  }
+}
+
 module.exports = {
-  findOne, find, insertOne, updateOne
+  findOne, find, insertOne, updateOne, deleteOne
 };

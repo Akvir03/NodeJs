@@ -1,4 +1,4 @@
-const { findOne, find, insertOne, updateOne} = require("../services/db/crud");
+const { findOne, find, insertOne, updateOne, deleteOne} = require("../services/db/crud");
 const axios = require("axios").default;
 const { getMovieByTitle} = require("../repositories/omdbapi.js");
 
@@ -139,6 +139,53 @@ async function findUsers(req, res, next) {
   }
 }
 
+async function afficheregistre(req, res, next) {
+  try {
+    const result = await find("Registre", req.query);
+    return res.send(result);
+  } catch (e) {
+    console.log(e);
+    return next(e);
+  }
+}
+
+async function afficheusers(req, res, next) {
+  try {
+    const result = await find("User", req.query);
+    return res.send(result);
+  } catch (e) {
+    console.log(e);
+    return next(e);
+  }
+}
+
+async function affichewatchusers(req, res, next) {
+  try {
+    const user = await findOne("User", { username: req.query.username });
+    if (!user) {
+      return res.status(404).send({ Error: `Error, l'utilisateur ${req.query.username} n'existe pas` });
+    }
+    const watchlists = await find("Watchlist", { user_id: user._id });
+    return res.send(watchlists);
+  } catch (e) {
+    console.log(e);
+    return next(e);
+  }
+}
+
+async function affichewatch(req, res, next) {
+  try {
+    const watchlist = await findOne("Watchlist", { nom: req.query.nom });
+    if (!watchlist) {
+      return res.status(404).send({ Error: `Error, la watchlist ${req.query.nom} n'existe pas` });
+    }
+    return res.send(watchlist.filmlist);
+  } catch (e) {
+    console.log(e);
+    return next(e);
+  }
+}
+
 async function insertUser(req, res, next) {
   try {
     const verif = await findOne("User", {username: req.body.username})
@@ -160,7 +207,71 @@ async function insertUser(req, res, next) {
 
 async function updateUser(req, res, next) {
   try {
-    const result = await updateOne("User", {"name": "Paul"}, {$set : {name : "Paulo"}});
+    const result = await updateOne("User", {"name": req.name}, {$set : {name : req.newname}});
+    return res.send(result);
+  } catch (e) {
+    console.log(e);
+    return next(e);
+  }
+}
+
+async function suppfromwatch(req, res, next) {
+  try {
+    const watchlist = await findOne("Watchlist", {nom: req.body.nom})
+    if (!watchlist) {
+      return res.status(404).send({Error: `Error, la watchlist ${req.body.nom} n'existe pas`})
+    }
+    const filmlist = watchlist.filmlist.filter(f => f.Title !== req.body.Title)
+    const result = await updateOne("Watchlist", {"nom": req.body.nom}, {$set : {filmlist}})
+    return res.send(result);
+  } catch (e) {
+    console.log(e);
+    return next(e);
+  }
+}
+
+async function changeuser(req, res, next) {
+  try {
+    const user = await findOne("User", {username: req.body.username})
+    if (!user) {
+      return res.status(404).send({Error: `Error, l'utilisateur ${req.body.username} n'existe pas`})
+    }
+    const result = await updateOne("User", {"username": req.body.username}, {$set : req.body})
+    return res.send(result);
+  } catch (e) {
+    console.log(e);
+    return next(e);
+  }
+}
+
+async function notewatch(req, res, next) {
+  try {
+    const { nom, item, note } = req.body;
+    const watchlist = await findOne("Watchlist", { nom });
+    if (!watchlist) {
+      return res.status(404).send({ Error: `La watchlist ${nom} n'existe pas` });
+    }
+    const index = watchlist.filmlist.findIndex((film) => film.Title === item);
+    if (index === -1) {
+      return res.status(404).send({ Error: `Le film ${item} n'existe pas dans la watchlist ${nom}` });
+    }
+    watchlist.filmlist[index].note = note;
+    const result = await updateOne("Watchlist", { nom }, { $set: { filmlist: watchlist.filmlist } });
+    return res.send(result);
+  } catch (e) {
+    console.log(e);
+    return next(e);
+  }
+}
+
+
+
+async function suppwatch(req,res,next) {
+  try {
+    const result = await deleteOne("Watchlist", {"nom": req.body.nom});
+    if (result.deletedCount === 0) {
+      return res.status(404).send({Error: `La watchlist ${req.body.nom} n'existe pas`});
+    }
     return res.send(result);
   } catch (e) {
     console.log(e);
@@ -169,5 +280,5 @@ async function updateUser(req, res, next) {
 }
 
 module.exports = {
-  findUser, findUsers, insertUser, updateUser, insertWatch, insertfilminWatch, insertfilminregistre
+  findUser, findUsers,notewatch,suppwatch,insertUser,suppfromwatch, changeuser, updateUser, insertWatch, insertfilminWatch, insertfilminregistre, afficheregistre, afficheusers, affichewatchusers, affichewatch
 };
