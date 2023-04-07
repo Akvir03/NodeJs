@@ -1,6 +1,9 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { request } = require('undici');
 const { logger } = require("../log");
+/**
+ * Commande qui retourne les définitions d'un mot depuis Urban Dictionary
+ */
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('urban')

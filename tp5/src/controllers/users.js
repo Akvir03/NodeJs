@@ -1,6 +1,13 @@
 const { findOne, find, insertOne, updateOne } = require("../services/db/crud");
 const { logger } = require("../log");
 
+/**
+ * Fonction qui permet de trouver un utilisateur
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 async function findUser(req, res, next) {
   try {
     const result = await findOne("User", req.query);
@@ -11,7 +18,13 @@ async function findUser(req, res, next) {
   }
 }
 
-
+/**
+ * Fonction qui retourne tous les utilisateurs
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 async function afficheusers(req, res, next) {
   try {
     const result = await find("User", req.query);
@@ -23,7 +36,13 @@ async function afficheusers(req, res, next) {
 }
 
 
-
+/**
+ * Fonction qui insert un utilisateur
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 async function insertUser(req, res, next) {
   try {
     const verif = await findOne("User", { username: req.query.username })
@@ -43,7 +62,13 @@ async function insertUser(req, res, next) {
   }
 }
 
-
+/**
+ * Fonction qui permet de modifier un utilisateur
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 async function changeuser(req, res, next) {
   try {
     const user = await findOne("User", { username: req.query.username })

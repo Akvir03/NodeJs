@@ -1,6 +1,9 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { request } = require('undici');
 const { logger } = require("../log");
+/**
+ * Commande qui permet d'afficher un film
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('affichefilm')

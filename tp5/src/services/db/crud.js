@@ -1,6 +1,12 @@
 const { getCollection } = require("./connection");
 
-
+/**
+ * Fonction permettant de trouver un élément dans une collection
+ * @param {*} collectionName 
+ * @param {*} query 
+ * @param {*} options 
+ * @returns json
+ */
 async function findOne(collectionName, query, options = {}) {
   try {
     const collection = getCollection(collectionName);
@@ -14,7 +20,13 @@ async function findOne(collectionName, query, options = {}) {
     throw e;
   }
 }
-
+/**
+ * Permet de récupérer tous les éléments dans une collection MONGO
+ * @param {*} collectionName 
+ * @param {*} query 
+ * @param {*} options 
+ * @returns JSON
+ */
 async function find(collectionName, query, options = {}) {
   try {
     const collection = getCollection(collectionName);
@@ -30,7 +42,13 @@ async function find(collectionName, query, options = {}) {
     throw e;
   }
 }
-
+/**
+ * Permet d'insérer un élément dans une collection MONGO
+ * @param {*} collectionName 
+ * @param {*} query 
+ * @param {*} doc 
+ * @returns JSON
+ */
 async function insertOne(collectionName, query, doc) {
   try {
     const collection = getCollection(collectionName);
@@ -45,7 +63,15 @@ async function insertOne(collectionName, query, doc) {
   }
 }
 
-
+/**
+ * Permet de modifier un élément dans une collection Mongo
+ * @param {*} collectionName 
+ * @param {*} query 
+ * @param {*} filter 
+ * @param {*} updateDoc 
+ * @param {*} options 
+ * @returns JSON
+ */
 async function updateOne(collectionName, query, filter, updateDoc, options = {}) {
   try {
     const collection = getCollection(collectionName);
@@ -59,7 +85,13 @@ async function updateOne(collectionName, query, filter, updateDoc, options = {})
     throw e;
   }
 }
-
+/**
+ * Permet de supprimer un élément d'une collection MONGO
+ * @param {*} collectionName 
+ * @param {*} query 
+ * @param {*} options 
+ * @returns JSON
+ */
 async function deleteOne(collectionName, query, options = {}) {
   try {
     const collection = getCollection(collectionName);

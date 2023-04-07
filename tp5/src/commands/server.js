@@ -1,5 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js')
-
+/**
+ * Commande qui donne les informations serveur
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('server')

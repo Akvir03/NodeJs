@@ -5,7 +5,9 @@ const url = conf.databaseUrl;
 const dbName = conf.databaseName;
 // Create a new MongoClient
 const client = new MongoClient(url);
-
+/**
+ * Fonction permettant de se connecter à MONGODB en local
+ */
 async function connectTodB() {
   try {
     console.log("Trying to access the db...");
@@ -22,7 +24,11 @@ async function connectTodB() {
     throw e;
   }
 }
-
+/**
+ * Fonction permettant de récupérer une collection dans MONGODB
+ * @param {*} collectionName 
+ * @returns JSON
+ */
 function getCollection(collectionName) {
   return client.db(dbName).collection(collectionName);
 }

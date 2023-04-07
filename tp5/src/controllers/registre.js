@@ -3,6 +3,13 @@ const axios = require("axios").default;
 const { getMovieByTitle } = require("../repositories/omdbapi.js");
 const { logger } = require("../log");
 
+/**
+ * Fonction pour insérer un film au registre
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 async function insertfilminregistre(req, res, next) {
     try {
         const veriffilm = await findOne("Registre", { Title: req.query.Title })
@@ -28,7 +35,13 @@ async function insertfilminregistre(req, res, next) {
     }
 }
 
-
+/**
+ * Fonction pour afficher tous les films du registre
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 async function afficheregistre(req, res, next) {
     try {
         const result = await find("Registre", req.query);
@@ -38,6 +51,13 @@ async function afficheregistre(req, res, next) {
         return next(e);
     }
 }
+/**
+ * Fonction pour afficher un film du registre
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 async function affichefilm(req, res, next) {
     try {
         const result = await findOne("Registre", req.query);

@@ -1,6 +1,9 @@
 const { SlashCommandBuilder } = require('discord.js');
 const axios = require("axios").default;
 const { logger } = require("../log");
+/**
+ * Commande qui permet de mettre un note à un film présent dans une watchlist
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('notefilmwatch')

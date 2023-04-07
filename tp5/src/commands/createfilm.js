@@ -1,6 +1,9 @@
 const { SlashCommandBuilder } = require('discord.js');
 const axios = require("axios").default;
 const { logger } = require("../log");
+/**
+ * Commande qui permet de créer un film
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('createfilm')

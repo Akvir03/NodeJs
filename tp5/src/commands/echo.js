@@ -1,5 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js')
-
+/**
+ * Commande qui répête le paramètre entré par l'utilisateur
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('echo')

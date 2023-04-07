@@ -1,6 +1,9 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { request } = require('undici');
 const { logger } = require("../log");
+/**
+ * Commande qui affiche la watchlist demandée au format JSON
+ */
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('watchlist')

@@ -3,6 +3,13 @@ const axios = require("axios").default;
 const { getMovieByTitle } = require("../repositories/omdbapi.js");
 const { logger } = require("../log");
 
+/**
+ * Fonction qui permet d'afficher une watchlist
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 async function affichewatchusers(req, res, next) {
     try {
         const user = await findOne("User", { username: req.query.username });
@@ -17,6 +24,13 @@ async function affichewatchusers(req, res, next) {
     }
 }
 
+/**
+ * Fonction qui permet d'insérer un film dans une watchlist
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 async function insertfilminWatch(req, res, next) {
     try {
         const verif = await findOne("User", { username: req.body.username })
@@ -72,7 +86,13 @@ async function insertfilminWatch(req, res, next) {
         return next(e);
     }
 }
-
+/**
+ * Fonction qui permet de créer une watchlist
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 async function insertWatch(req, res, next) {
     try {
         const verif = await findOne("User", { username: req.query.username })
@@ -108,7 +128,13 @@ async function insertWatch(req, res, next) {
     }
 }
 
-
+/**
+ * Fonction qui permet d'afficher une watchlist
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 async function affichewatch(req, res, next) {
     try {
         const watchlist = await findOne("Watchlist", { nom: req.query.nom });
@@ -122,7 +148,13 @@ async function affichewatch(req, res, next) {
     }
 }
 
-
+/**
+ * Fonction qui permet de supprimer une watchlist
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 async function suppfromwatch(req, res, next) {
     try {
         const watchlist = await findOne("Watchlist", { nom: req.body.nom })
@@ -137,7 +169,13 @@ async function suppfromwatch(req, res, next) {
         return next(e);
     }
 }
-
+/**
+ * Fonction qui permet d'ajouter une note à un film dans la watchlit
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 async function notewatch(req, res, next) {
     try {
         const { nom, item, note } = req.body;
@@ -158,7 +196,13 @@ async function notewatch(req, res, next) {
     }
 }
 
-
+/**
+ * Fonction qui permet de supprimer une watchlist
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns json
+ */
 
 async function suppwatch(req, res, next) {
     try {

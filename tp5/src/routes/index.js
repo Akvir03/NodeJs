@@ -9,7 +9,7 @@ app.use(express.json());
 const metrics = {
   requestsCount: {},
 };
-
+/** Appels permettant d'ouvrir les routes nécessaires au fonctionnement du code */
 app.use("/users", users);
 app.use("/watchlist", watchlist);
 app.use("/registre", registre);
