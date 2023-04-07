@@ -2,6 +2,7 @@ const { findOne, find, insertOne, updateOne, deleteOne} = require("../services/d
 const axios = require("axios").default;
 const { getMovieByTitle} = require("../repositories/omdbapi.js");
 
+
 async function findUser(req, res, next) {
   try {
     const result = await findOne("User", {"username": req});
